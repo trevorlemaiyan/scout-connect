@@ -6,9 +6,11 @@ class Scout {
   final String email;
   final String organization;
   final String profilePictureUrl;
-  final List<String> discoveredAthletes;
-  final List<String> interestedSports;
   final String bio;
+  final String about; // Detailed about section
+  final List<String> discoveredAthletes; // Players added by this scout
+  final List<String> interestedSports;
+  final int connectionCount; // Number of connections
   final DateTime createdAt;
   final DateTime updatedAt;
 
@@ -18,8 +20,10 @@ class Scout {
     required this.email,
     required this.organization,
     required this.profilePictureUrl,
+    this.about = '',
     required this.discoveredAthletes,
     required this.interestedSports,
+    this.connectionCount = 0,
     required this.bio,
     required this.createdAt,
     required this.updatedAt,
@@ -33,9 +37,11 @@ class Scout {
       'email': email,
       'organization': organization,
       'profilePictureUrl': profilePictureUrl,
+      'bio': bio,
+      'about': about,
       'discoveredAthletes': discoveredAthletes,
       'interestedSports': interestedSports,
-      'bio': bio,
+      'connectionCount': connectionCount,
       'createdAt': createdAt,
       'updatedAt': updatedAt,
     };
@@ -49,9 +55,11 @@ class Scout {
       email: data['email'] ?? '',
       organization: data['organization'] ?? '',
       profilePictureUrl: data['profilePictureUrl'] ?? '',
+      bio: data['bio'] ?? '',
+      about: data['about'] ?? '',
       discoveredAthletes: List<String>.from(data['discoveredAthletes'] ?? []),
       interestedSports: List<String>.from(data['interestedSports'] ?? []),
-      bio: data['bio'] ?? '',
+      connectionCount: data['connectionCount'] ?? 0,
       createdAt: (data['createdAt'] as Timestamp).toDate(),
       updatedAt: (data['updatedAt'] as Timestamp).toDate(),
     );

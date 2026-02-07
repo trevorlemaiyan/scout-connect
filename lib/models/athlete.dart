@@ -10,6 +10,7 @@ class Athlete {
   final String location;
   final String profilePictureUrl;
   final String bio;
+  final String about; // Detailed about section
   final List<String> achievements;
   final List<String> skills;
   final List<String> videoUrls; // New field for video uploads
@@ -18,6 +19,9 @@ class Athlete {
   final double weight;
   final String experience; // Years of experience
   final String education; // Educational background
+  final bool isScouted; // Scouted badge status
+  final List<String> scoutedBy; // List of scout IDs who scouted this athlete
+  final int connectionCount; // Number of connections
   final DateTime createdAt;
   final DateTime updatedAt;
 
@@ -31,6 +35,7 @@ class Athlete {
     required this.location,
     required this.profilePictureUrl,
     required this.bio,
+    this.about = '',
     required this.achievements,
     required this.skills,
     this.videoUrls = const [],
@@ -39,6 +44,9 @@ class Athlete {
     this.weight = 0.0,
     this.experience = '',
     this.education = '',
+    this.isScouted = false,
+    this.scoutedBy = const [],
+    this.connectionCount = 0,
     required this.createdAt,
     required this.updatedAt,
   });
@@ -55,6 +63,7 @@ class Athlete {
       'location': location,
       'profilePictureUrl': profilePictureUrl,
       'bio': bio,
+      'about': about,
       'achievements': achievements,
       'skills': skills,
       'videoUrls': videoUrls,
@@ -63,6 +72,9 @@ class Athlete {
       'weight': weight,
       'experience': experience,
       'education': education,
+      'isScouted': isScouted,
+      'scoutedBy': scoutedBy,
+      'connectionCount': connectionCount,
       'createdAt': createdAt,
       'updatedAt': updatedAt,
     };
@@ -80,6 +92,7 @@ class Athlete {
       location: data['location'] ?? '',
       profilePictureUrl: data['profilePictureUrl'] ?? '',
       bio: data['bio'] ?? '',
+      about: data['about'] ?? '',
       achievements: List<String>.from(data['achievements'] ?? []),
       skills: List<String>.from(data['skills'] ?? []),
       videoUrls: List<String>.from(data['videoUrls'] ?? []),
@@ -88,6 +101,9 @@ class Athlete {
       weight: (data['weight'] ?? 0.0).toDouble(),
       experience: data['experience'] ?? '',
       education: data['education'] ?? '',
+      isScouted: data['isScouted'] ?? false,
+      scoutedBy: List<String>.from(data['scoutedBy'] ?? []),
+      connectionCount: data['connectionCount'] ?? 0,
       createdAt: (data['createdAt'] as Timestamp).toDate(),
       updatedAt: (data['updatedAt'] as Timestamp).toDate(),
     );
