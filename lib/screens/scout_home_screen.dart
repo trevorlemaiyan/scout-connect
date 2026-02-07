@@ -247,7 +247,7 @@ class ScoutEventsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       appBar: AppBar(
         title: Text('Events'),
       ),
@@ -263,11 +263,11 @@ class ScoutMessagesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       appBar: AppBar(
         title: Text('Messages'),
       ),
-      body: Center(
+      body: const Center(
         child: Text('Messages - Coming Soon'),
       ),
     );
