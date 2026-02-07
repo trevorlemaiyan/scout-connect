@@ -3,6 +3,7 @@ import '../widgets/stats_card.dart';
 import '../widgets/quick_actions_card.dart';
 import '../widgets/recent_events_card.dart';
 import '../widgets/athlete_profile_card.dart';
+import '../screens/profile_screen.dart';
 
 class AthleteHomeScreen extends StatefulWidget {
   const AthleteHomeScreen({Key? key}) : super(key: key);
@@ -152,14 +153,7 @@ class AthleteProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      appBar: AppBar(
-        title: Text('Profile'),
-      ),
-      body: Center(
-        child: Text('Profile Page - Coming Soon'),
-      ),
-    );
+    return const ProfileScreen();
   }
 }
 
@@ -168,12 +162,12 @@ class AthleteEventsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       appBar: AppBar(
-        title: Text('Events'),
+        title: const Text('Events'),
       ),
-      body: Center(
-        child: Text('Events Page - Coming Soon'),
+      body: const Center(
+        child: Text('Events - Coming Soon'),
       ),
     );
   }
@@ -184,12 +178,12 @@ class AthleteMessagesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       appBar: AppBar(
-        title: Text('Messages'),
+        title: const Text('Messages'),
       ),
-      body: Center(
-        child: Text('Messages Page - Coming Soon'),
+      body: const Center(
+        child: Text('Messages - Coming Soon'),
       ),
     );
   }

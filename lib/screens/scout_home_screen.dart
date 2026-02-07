@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../widgets/stats_card.dart';
 import '../screens/athlete_discovery_screen.dart';
+import '../screens/connections_screen.dart';
 
 class ScoutHomeScreen extends StatefulWidget {
   const ScoutHomeScreen({Key? key}) : super(key: key);
@@ -229,6 +230,15 @@ class ScoutDiscoveryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const AthleteDiscoveryScreen();
+  }
+}
+
+class ScoutProfilePage extends StatelessWidget {
+  const ScoutProfilePage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const ConnectionsScreen();
   }
 }
 

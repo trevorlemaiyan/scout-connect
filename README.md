@@ -436,12 +436,18 @@ Update the following in your Firebase configuration:
 - [x] Social media-style navigation
 
 ### 🚧 In Progress
-- [ ] Advanced search and filtering
-- [ ] Video upload and playback
+- [x] Advanced search and filtering
+- [x] Video upload and playback
+- [x] Real-time chat features
+- [x] Analytics dashboard
 - [ ] Push notifications
-- [ ] Real-time chat features
-- [ ] Analytics dashboard
-- [ ] Event registration system
+- [x] Event registration system
+- [x] Connection management system
+- [x] Profile picture upload
+- [x] About sections
+- [x] Scout 'Add Player' functionality
+- [x] Scouted badge system
+- [x] Connection counts (like Instagram followers)
 
 ### 📋 Planned Features
 - [ ] Live streaming for events
@@ -449,6 +455,9 @@ Update the following in your Firebase configuration:
 - [ ] Integration with sports APIs
 - [ ] Multi-language support
 - [ ] Web platform support
+- [ ] Advanced analytics dashboard
+- [ ] Event management system
+- [ ] Push notifications
 
 ## 🤝 Contributing
 
