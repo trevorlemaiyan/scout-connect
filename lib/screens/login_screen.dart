@@ -33,10 +33,6 @@ class LoginScreenState extends State<LoginScreen> {
 
         User? user = userCredential.user;
         if (user != null) {
-          DocumentSnapshot userData = await FirebaseFirestore.instance.collection('users').doc(user.uid).get();
-          String accountType = userData['accountType'];
-
-          if (!mounted) return;
           // Navigation will be handled by AuthWrapper
         }
       } catch (e) {

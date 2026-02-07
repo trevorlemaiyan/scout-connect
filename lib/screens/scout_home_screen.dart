@@ -6,7 +6,7 @@ class ScoutHomeScreen extends StatefulWidget {
   const ScoutHomeScreen({Key? key}) : super(key: key);
 
   @override
-  _ScoutHomeScreenState createState() => _ScoutHomeScreenState();
+  State<ScoutHomeScreen> createState() => _ScoutHomeScreenState();
 }
 
 class _ScoutHomeScreenState extends State<ScoutHomeScreen> {
@@ -16,8 +16,8 @@ class _ScoutHomeScreenState extends State<ScoutHomeScreen> {
   final List<Widget> _pages = [
     const ScoutFeedPage(),
     const ScoutDiscoveryPage(),
-    const ScoutEventsPage(),
-    const ScoutMessagesPage(),
+    ScoutEventsPage(),
+    ScoutMessagesPage(),
   ];
 
   @override

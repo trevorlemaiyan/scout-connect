@@ -9,7 +9,7 @@ class AthleteDiscoveryScreen extends StatefulWidget {
   const AthleteDiscoveryScreen({Key? key}) : super(key: key);
 
   @override
-  _AthleteDiscoveryScreenState createState() => _AthleteDiscoveryScreenState();
+  State<AthleteDiscoveryScreen> createState() => _AthleteDiscoveryScreenState();
 }
 
 class _AthleteDiscoveryScreenState extends State<AthleteDiscoveryScreen> {

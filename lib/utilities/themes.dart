@@ -20,7 +20,6 @@ class ScoutConnectTheme {
         primary: primaryColor,
         secondary: accentColor,
         surface: surfaceColor,
-        background: backgroundColor,
         onSurface: onSurfaceColor,
       ),
       appBarTheme: const AppBarTheme(
@@ -131,7 +130,6 @@ class ScoutConnectTheme {
         primary: primaryColor,
         secondary: accentColor,
         surface: const Color(0xFF1E1E1E),
-        background: const Color(0xFF121212),
         onSurface: Colors.white,
       ),
       appBarTheme: const AppBarTheme(

@@ -2,6 +2,260 @@
 
 A modern Flutter social media application designed to connect athletes with sports scouts, inspired by LinkedIn and Instagram design patterns.
 
+## 🚀 How to Run the App
+
+### Prerequisites
+- Flutter SDK (>=2.12.0 <3.0.0)
+- Dart SDK
+- Android Studio / VS Code
+- Firebase account
+
+### Quick Start
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/your-username/scout-connect.git
+   cd scout-connect
+   ```
+
+2. **Install dependencies**
+   ```bash
+   flutter pub get
+   ```
+
+3. **Firebase Setup**
+   - Create a new Firebase project at [Firebase Console](https://console.firebase.google.com/)
+   - Enable Authentication (Email/Password and Google Sign-in)
+   - Set up Firestore Database
+   - Configure Firebase Storage
+   - Download `google-services.json` and place in `android/app/`
+   - Update `lib/firebase_options.dart` with your Firebase configuration
+
+4. **Run the app**
+   ```bash
+   flutter run
+   ```
+
+### Firebase Configuration Details
+
+1. **Authentication Setup**
+   - Go to Firebase Console → Authentication
+   - Enable Email/Password sign-in method
+   - Enable Google sign-in method
+   - Add your app's SHA-1 key for Google sign-in
+
+2. **Firestore Database**
+   - Create Firestore database in test mode
+   - Set up security rules for production use
+
+3. **Firebase Storage**
+   - Enable Firebase Storage
+   - Set up security rules for file uploads
+
+4. **Update Firebase Options**
+   ```dart
+   // In lib/firebase_options.dart
+   static const FirebaseOptions android = FirebaseOptions(
+     apiKey: 'your-android-api-key',
+     appId: 'your-android-app-id',
+     messagingSenderId: 'your-sender-id',
+     projectId: 'your-project-id',
+     storageBucket: 'your-project-id.appspot.com',
+   );
+   ```
+
+## 📱 App Architecture & Flow
+
+### Project Structure
+```
+scout-connect/
+├── lib/
+│   ├── main.dart                    # App entry point & Firebase initialization
+│   ├── firebase_options.dart        # Firebase configuration
+│   ├── models/                      # Data models
+│   │   ├── athlete.dart             # Athlete data structure
+│   │   ├── scout.dart               # Scout data structure
+│   │   ├── sport_category.dart     # Sport categories & positions
+│   │   └── search_filter.dart       # Search & filter criteria
+│   ├── screens/                     # UI screens
+│   │   ├── auth_wrapper.dart        # Authentication state manager
+│   │   ├── login_screen.dart        # Login & registration
+│   │   ├── athlete_home_screen.dart # Athlete main interface
+│   │   ├── scout_home_screen.dart   # Scout main interface
+│   │   ├── athlete_discovery_screen.dart # Advanced athlete search
+│   │   └── video_upload_screen.dart # Video upload interface
+│   ├── services/                    # Business logic
+│   │   ├── discovery_service.dart   # Athlete search & filtering
+│   │   └── video_service.dart       # Video upload & management
+│   ├── utilities/                   # Helper utilities
+│   │   └── themes.dart              # Material 3 theming
+│   └── widgets/                     # Reusable UI components
+│       ├── stats_card.dart          # Statistics display
+│       ├── quick_actions_card.dart  # Quick action buttons
+│       ├── recent_events_card.dart  # Event listings
+│       ├── athlete_profile_card.dart # Profile preview
+│       └── athlete_card.dart        # Athlete search results
+├── android/                        # Android platform files
+├── ios/                            # iOS platform files
+├── web/                            # Web platform files
+└── test/                           # Test files
+```
+
+### Application Flow
+
+#### 1. **App Initialization** (`main.dart`)
+```dart
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(); // Initialize Firebase
+  runApp(const ScoutConnectApp()); // Start app with theme
+}
+```
+
+#### 2. **Authentication Flow** (`auth_wrapper.dart`)
+```
+Launch App → AuthWrapper → Check Auth State
+                                ↓
+                    ┌─ Not Authenticated → LoginScreen
+                    │
+                    └─ Authenticated → Get User Type
+                                         ↓
+                              ┌─ Athlete → AthleteHomeScreen
+                              │
+                              └─ Scout → ScoutHomeScreen
+```
+
+#### 3. **Athlete User Flow**
+```
+AthleteHomeScreen (Bottom Navigation)
+    ↓
+├── Feed Tab → AthleteFeedPage
+│   ├── Welcome Section
+│   ├── StatsCard (Profile views, connections)
+│   ├── QuickActionsCard (Edit profile, upload video, etc.)
+│   ├── RecentEventsCard (Upcoming events)
+│   └── AthleteProfileCard (Profile preview)
+│
+├── Profile Tab → AthleteProfilePage (Coming Soon)
+│
+├── Events Tab → AthleteEventsPage (Coming Soon)
+│
+└── Messages Tab → AthleteMessagesPage (Coming Soon)
+```
+
+#### 4. **Scout User Flow**
+```
+ScoutHomeScreen (Bottom Navigation)
+    ↓
+├── Dashboard Tab → ScoutFeedPage
+│   ├── Welcome Section
+│   ├── ScoutStatsCard (Athletes discovered, events organized)
+│   └── RecentActivityCard (Recent actions)
+│
+├── Discover Tab → AthleteDiscoveryScreen
+│   ├── Search Bar (Text search)
+│   ├── Filter Section (Sport, position, age, location, skills)
+│   ├── Results List → AthleteCard widgets
+│   └── Sort Options (Relevance, age, location, recent)
+│
+├── Events Tab → ScoutEventsPage (Coming Soon)
+│
+└── Messages Tab → ScoutMessagesPage (Coming Soon)
+```
+
+#### 5. **Video Upload Flow** (`video_upload_screen.dart`)
+```
+QuickActionsCard → VideoUploadScreen
+    ↓
+├── Instructions Section
+├── Upload Options
+│   ├── Record Video → Camera → Upload to Firebase Storage
+│   └── Choose from Gallery → Gallery → Upload to Firebase Storage
+├── Upload Progress
+└── Success/Error Handling
+```
+
+#### 6. **Athlete Discovery Flow** (`athlete_discovery_screen.dart`)
+```
+AthleteDiscoveryScreen
+    ↓
+├── Search Bar → Text Search (names, bios, sports)
+├── Filter Toggle → Filter Section
+│   ├── Sport Dropdown (Football only, Athletics ready)
+│   ├── Position Dropdown (Sport-specific positions)
+│   ├── Age Range (Min/Max age)
+│   ├── Location Text Field
+│   └── Checkboxes (Has videos, Has achievements)
+├── Apply Filters → DiscoveryService.searchAthletes()
+├── Results → AthleteCard widgets
+│   ├── Profile Info (Name, sport, position, location, age)
+│   ├── Bio Preview
+│   ├── Skills Tags
+│   ├── Stats (Achievements, videos, skills count)
+│   └── Action Buttons (View profile, Contact)
+└── Sort Options
+```
+
+### Data Flow Architecture
+
+#### 1. **Authentication Data Flow**
+```
+LoginScreen → Firebase Auth → AuthWrapper → Firestore User Document
+                                                    ↓
+                                            Determine Account Type
+                                                    ↓
+                                        Navigate to Appropriate Home Screen
+```
+
+#### 2. **Video Upload Data Flow**
+```
+VideoUploadScreen → VideoService.uploadVideo()
+    ↓
+ImagePicker → Firebase Storage → Download URL
+    ↓
+Firestore → Update Athlete Document (videoUrls array)
+    ↓
+UI Update → Success Message
+```
+
+#### 3. **Search & Discovery Data Flow**
+```
+AthleteDiscoveryScreen → DiscoveryService.searchAthletes()
+    ↓
+Firestore Query (with filters) → Stream of Athlete Documents
+    ↓
+Client-side Filtering (skills, experience) → Filtered Results
+    ↓
+UI Update → AthleteCard Widgets
+```
+
+### Key Components Explained
+
+#### **Models Layer**
+- **Athlete**: Complete athlete profile with videos, achievements, physical stats
+- **Scout**: Scout profile with organization and preferences
+- **SportCategory**: Sport definitions with positions and skills
+- **SearchFilter**: Comprehensive filtering criteria
+
+#### **Services Layer**
+- **DiscoveryService**: Handles complex athlete search and filtering
+- **VideoService**: Manages video uploads, storage, and metadata
+
+#### **UI Layer**
+- **Screens**: Main application screens with navigation
+- **Widgets**: Reusable UI components for consistent design
+- **Themes**: Material 3 theming with LinkedIn-inspired colors
+
+### State Management
+- **Authentication**: Firebase Auth state changes via AuthWrapper
+- **Data**: Firestore streams for real-time updates
+- **UI**: StatefulWidget for local state management
+
+### Navigation Pattern
+- **Bottom Navigation**: Social media-style tab navigation
+- **Screen Navigation**: MaterialPageRoute for screen transitions
+- **Modal Navigation**: Dialogs for uploads and confirmations
+
 ## 🏆 About Scout Connect
 
 Scout Connect is a comprehensive mobile platform that bridges the gap between talented athletes and professional scouts. The app features a modern, social media-inspired interface with LinkedIn-style professional networking and Instagram-like visual engagement.

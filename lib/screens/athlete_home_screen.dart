@@ -8,7 +8,7 @@ class AthleteHomeScreen extends StatefulWidget {
   const AthleteHomeScreen({Key? key}) : super(key: key);
 
   @override
-  _AthleteHomeScreenState createState() => _AthleteHomeScreenState();
+  State<AthleteHomeScreen> createState() => _AthleteHomeScreenState();
 }
 
 class _AthleteHomeScreenState extends State<AthleteHomeScreen> {
@@ -17,9 +17,9 @@ class _AthleteHomeScreenState extends State<AthleteHomeScreen> {
   
   final List<Widget> _pages = [
     const AthleteFeedPage(),
-    const AthleteProfilePage(),
-    const AthleteEventsPage(),
-    const AthleteMessagesPage(),
+    AthleteProfilePage(),
+    AthleteEventsPage(),
+    AthleteMessagesPage(),
   ];
 
   @override

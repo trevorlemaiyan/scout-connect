@@ -7,7 +7,7 @@ class VideoUploadScreen extends StatefulWidget {
   const VideoUploadScreen({Key? key}) : super(key: key);
 
   @override
-  _VideoUploadScreenState createState() => _VideoUploadScreenState();
+  State<VideoUploadScreen> createState() => _VideoUploadScreenState();
 }
 
 class _VideoUploadScreenState extends State<VideoUploadScreen> {
