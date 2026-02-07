@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../widgets/stats_card.dart';
+import '../screens/athlete_discovery_screen.dart';
 
 class ScoutHomeScreen extends StatefulWidget {
   const ScoutHomeScreen({Key? key}) : super(key: key);
@@ -227,29 +228,7 @@ class ScoutDiscoveryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Discover Athletes'),
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(60),
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              decoration: InputDecoration(
-                hintText: 'Search athletes by sport, position, location...',
-                prefixIcon: const Icon(Icons.search),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-              ),
-            ),
-          ),
-        ),
-      ),
-      body: const Center(
-        child: Text('Athlete Discovery - Coming Soon'),
-      ),
-    );
+    return const AthleteDiscoveryScreen();
   }
 }
 

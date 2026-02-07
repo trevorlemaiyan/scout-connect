@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../utilities/themes.dart';
+import '../screens/video_upload_screen.dart';
 
 class QuickActionsCard extends StatelessWidget {
   const QuickActionsCard({Key? key}) : super(key: key);
@@ -35,7 +36,10 @@ class QuickActionsCard extends StatelessWidget {
                   icon: Icons.upload_file,
                   label: 'Upload Video',
                   onTap: () {
-                    // TODO: Navigate to video upload
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const VideoUploadScreen()),
+                    );
                   },
                 ),
                 _QuickAction(

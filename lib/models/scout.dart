@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Scout {
   final String id;
   final String name;
@@ -50,8 +52,8 @@ class Scout {
       discoveredAthletes: List<String>.from(data['discoveredAthletes'] ?? []),
       interestedSports: List<String>.from(data['interestedSports'] ?? []),
       bio: data['bio'] ?? '',
-      createdAt: (data['createdAt'] as Timestamp)?.toDate() ?? DateTime.now(),
-      updatedAt: (data['updatedAt'] as Timestamp)?.toDate() ?? DateTime.now(),
+      createdAt: (data['createdAt'] as Timestamp).toDate(),
+      updatedAt: (data['updatedAt'] as Timestamp).toDate(),
     );
   }
 

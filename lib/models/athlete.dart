@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Athlete {
   final String id;
   final String name;
@@ -10,6 +12,12 @@ class Athlete {
   final String bio;
   final List<String> achievements;
   final List<String> skills;
+  final List<String> videoUrls; // New field for video uploads
+  final List<String> achievementsImages; // New field for achievement images
+  final double height; // Physical stats
+  final double weight;
+  final String experience; // Years of experience
+  final String education; // Educational background
   final DateTime createdAt;
   final DateTime updatedAt;
 
@@ -25,6 +33,12 @@ class Athlete {
     required this.bio,
     required this.achievements,
     required this.skills,
+    this.videoUrls = const [],
+    this.achievementsImages = const [],
+    this.height = 0.0,
+    this.weight = 0.0,
+    this.experience = '',
+    this.education = '',
     required this.createdAt,
     required this.updatedAt,
   });
@@ -43,6 +57,12 @@ class Athlete {
       'bio': bio,
       'achievements': achievements,
       'skills': skills,
+      'videoUrls': videoUrls,
+      'achievementsImages': achievementsImages,
+      'height': height,
+      'weight': weight,
+      'experience': experience,
+      'education': education,
       'createdAt': createdAt,
       'updatedAt': updatedAt,
     };
@@ -62,8 +82,14 @@ class Athlete {
       bio: data['bio'] ?? '',
       achievements: List<String>.from(data['achievements'] ?? []),
       skills: List<String>.from(data['skills'] ?? []),
-      createdAt: (data['createdAt'] as Timestamp)?.toDate() ?? DateTime.now(),
-      updatedAt: (data['updatedAt'] as Timestamp)?.toDate() ?? DateTime.now(),
+      videoUrls: List<String>.from(data['videoUrls'] ?? []),
+      achievementsImages: List<String>.from(data['achievementsImages'] ?? []),
+      height: (data['height'] ?? 0.0).toDouble(),
+      weight: (data['weight'] ?? 0.0).toDouble(),
+      experience: data['experience'] ?? '',
+      education: data['education'] ?? '',
+      createdAt: (data['createdAt'] as Timestamp).toDate(),
+      updatedAt: (data['updatedAt'] as Timestamp).toDate(),
     );
   }
 
